@@ -1,13 +1,29 @@
 import { useState } from 'react'
 import Navbar from './components/Navbar'
+import Modal from './components/Modal'
+import ExpenseForm from './components/ExpenseForm'
+import { createExpense } from './services/api'
 
 export default function App() {
-  const [activeView, setActiveView]   = useState('dashboard')
+  const [activeView,   setActiveView]   = useState('dashboard')
   const [addModalOpen, setAddModalOpen] = useState(false)
+  const [formLoading,  setFormLoading]  = useState(false)
 
   const handleAddClick = () => {
     setActiveView('logbook')
     setAddModalOpen(true)
+  }
+
+  const handleAdd = async (data) => {
+    setFormLoading(true)
+    try {
+      await createExpense(data)
+      setAddModalOpen(false)
+    } catch (err) {
+      alert(err.response?.data?.detail || 'Failed to add expense')
+    } finally {
+      setFormLoading(false)
+    }
   }
 
   return (
@@ -34,10 +50,16 @@ export default function App() {
       </main>
 
       <footer className="border-t border-border mt-16 py-6 text-center">
-        <p className="text-muted text-xs font-mono">
-          SpendWise · React + FastAPI + MySQL
-        </p>
+        <p className="text-muted text-xs font-mono">SpendWise · React + FastAPI + MySQL</p>
       </footer>
+
+      <Modal isOpen={addModalOpen} onClose={() => setAddModalOpen(false)} title="Add Expense">
+        <ExpenseForm
+          onSubmit={handleAdd}
+          onCancel={() => setAddModalOpen(false)}
+          loading={formLoading}
+        />
+      </Modal>
     </div>
   )
 }
