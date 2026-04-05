@@ -27,15 +27,20 @@ with full CRUD capability, filtering, and analytics — all within a single-page
 
 ## Features
 
-- ➕ **Add expenses** with title, amount, category, date, and description
-- ✏️ **Edit expenses** via an animated modal — no page reload
-- 🗑️ **Delete expenses** with a confirmation dialog
-- 🔍 **Filter & sort** by category, date range, and amount
-- 📊 **Category breakdown** — pie chart + progress bars
-- 📈 **Monthly trend** — bar chart of spending over the last 6 months
-- 💡 **Summary stats** — total spent, expense count, top category, average
-- 📱 **Fully responsive** — works on mobile and desktop
-- ⚡ **SPA behaviour** — all views render dynamically, zero page reloads
+## Features
+
+- Responsive mobile design
+- Dynamic category filtering
+- Date range filtering
+- Dark mode UI
+- Animated modal forms
+- Real-time expense totals
+- Category pie chart
+- Monthly trend bar chart
+- Full CRUD operations
+- Toast notifications
+- Input validation
+- Auto-seeded sample data
 
 ---
 

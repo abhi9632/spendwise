@@ -40,7 +40,7 @@ def get_expenses(
 def get_stats(session: Session = Depends(get_session)):
     expenses = session.exec(select(Expense)).all()
 
-    # Category breakdown
+    # Group expenses by category and compute totals
     category_map = {}
     for e in expenses:
         if e.category not in category_map:
@@ -49,7 +49,7 @@ def get_stats(session: Session = Depends(get_session)):
         category_map[e.category]["count"] += 1
     by_category = sorted(category_map.values(), key=lambda x: x["total"], reverse=True)
 
-    # Monthly trend (last 6 months)
+    # Group by year-month and compute monthly spending trend
     month_map = {}
     for e in expenses:
         key = f"{e.date.year}-{e.date.month:02d}"
