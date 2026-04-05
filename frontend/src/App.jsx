@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import Navbar from './components/Navbar'
+import Dashboard from './pages/Dashboard'
 import Logbook from './pages/Logbook'
 
 export default function App() {
@@ -16,13 +17,8 @@ export default function App() {
       <Navbar activeView={activeView} setActiveView={setActiveView} onAddClick={handleAddClick} />
 
       <main className="max-w-6xl mx-auto px-4 py-8">
-        {activeView === 'dashboard' && (
-          <div className="card text-center py-20">
-            <p className="font-display font-bold text-2xl mb-2">Dashboard</p>
-            <p className="text-muted text-sm">Coming in Commit 7</p>
-          </div>
-        )}
-        {activeView === 'logbook' && (
+        {activeView === 'dashboard' && <Dashboard onAddClick={handleAddClick} />}
+        {activeView === 'logbook'   && (
           <Logbook externalModal={addModalOpen} onExternalModalClose={() => setAddModalOpen(false)} />
         )}
       </main>
