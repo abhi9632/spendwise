@@ -26,12 +26,31 @@ export default function ExpenseForm({ initial = null, onSubmit, onCancel, loadin
   }, [initial])
 
   const validate = () => {
-    const e = {}
-    if (!form.title.trim())                              e.title  = 'Title is required'
-    if (!form.amount || Number(form.amount) <= 0)        e.amount = 'Enter a valid positive amount'
-    if (!form.date)                                      e.date   = 'Date is required'
-    return e
-  }
+  const e = {}
+  if (!form.title.trim())
+    e.title = 'Title is required'
+  else if (form.title.trim().length < 2)
+    e.title = 'Title must be at least 2 characters'
+
+  if (!form.amount)
+    e.amount = 'Amount is required'
+  else if (isNaN(Number(form.amount)))
+    e.amount = 'Amount must be a number'
+  else if (Number(form.amount) <= 0)
+    e.amount = 'Amount must be greater than 0'
+  else if (Number(form.amount) > 100000)
+    e.amount = 'Amount cannot exceed $100,000'
+
+  if (!form.date)
+    e.date = 'Date is required'
+  else if (new Date(form.date) > new Date())
+    e.date = 'Date cannot be in the future'
+
+  if (form.description && form.description.length > 500)
+    e.description = 'Description cannot exceed 500 characters'
+
+  return e
+}
 
   const handleChange = (field) => (e) => {
     setForm(prev => ({ ...prev, [field]: e.target.value }))
