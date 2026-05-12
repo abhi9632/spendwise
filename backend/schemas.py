@@ -1,6 +1,8 @@
 from pydantic import BaseModel, EmailStr
 from typing import Optional
 from datetime import datetime
+from datetime import date as DateType
+from typing import Optional
 
 
 class UserRegister(BaseModel):
@@ -34,3 +36,10 @@ class ActivityOut(BaseModel):
     action: str
     detail: Optional[str]
     timestamp: datetime
+
+class ExpenseCreate(BaseModel):
+    title: str
+    amount: float
+    category: str
+    date: DateType
+    description: Optional[str] = ""
