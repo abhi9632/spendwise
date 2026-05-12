@@ -1,7 +1,12 @@
+import { useAuth } from '../context/AuthContext'
+
 export default function Navbar({ activeView, setActiveView, onAddClick }) {
+  const { user, logoutUser } = useAuth()
+
   const navItems = [
     { id: 'dashboard', label: 'Dashboard', icon: '◈' },
     { id: 'logbook',   label: 'Logbook',   icon: '≡' },
+    ...(user?.is_admin ? [{ id: 'admin', label: 'Admin', icon: '⚙' }] : []),
   ]
 
   return (
@@ -32,10 +37,18 @@ export default function Navbar({ activeView, setActiveView, onAddClick }) {
           ))}
         </nav>
 
-        <button onClick={onAddClick} className="btn-primary flex items-center gap-2">
-          <span className="text-lg leading-none">+</span>
-          <span>Add Expense</span>
-        </button>
+        <div className="flex items-center gap-3">
+          <span className="text-muted text-sm hidden sm:block">
+            {user?.username}
+          </span>
+          <button onClick={onAddClick} className="btn-primary flex items-center gap-2">
+            <span className="text-lg leading-none">+</span>
+            <span>Add Expense</span>
+          </button>
+          <button onClick={logoutUser} className="btn-ghost px-3 py-2.5">
+            Sign out
+          </button>
+        </div>
 
       </div>
     </header>

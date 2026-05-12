@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { useExpenses } from '../hooks/useExpenses'
 import ExpenseCard from '../components/ExpenseCard'
 import FilterBar from '../components/FilterBar'
+import SearchBar from '../components/SearchBar'
 import Modal from '../components/Modal'
 import ExpenseForm from '../components/ExpenseForm'
 import DeleteConfirm from '../components/DeleteConfirm'
@@ -11,6 +12,7 @@ const defaultFilters = { category: 'All', startDate: '', endDate: '', sort: '-da
 
 export default function Logbook({ externalModal, onExternalModalClose }) {
   const [filters,       setFilters]       = useState(defaultFilters)
+  const [search,        setSearch]        = useState('')
   const [editTarget,    setEditTarget]    = useState(null)
   const [deleteTarget,  setDeleteTarget]  = useState(null)
   const [formLoading,   setFormLoading]   = useState(false)
@@ -22,6 +24,7 @@ export default function Logbook({ externalModal, onExternalModalClose }) {
   if (filters.startDate)          params.start_date  = filters.startDate
   if (filters.endDate)            params.end_date    = filters.endDate
   if (filters.sort)               params.sort        = filters.sort
+  if (search)                     params.search      = search
 
   const { expenses, loading, error, addExpense, editExpense, removeExpense } = useExpenses(params)
 
@@ -65,19 +68,28 @@ export default function Logbook({ externalModal, onExternalModalClose }) {
   return (
     <div className="space-y-6 animate-fade-in">
 
+      {/* Header */}
       <div className="flex flex-wrap items-center justify-between gap-4">
         <div>
           <h2 className="font-display font-bold text-2xl">Logbook</h2>
           {!loading && (
             <p className="text-muted text-sm mt-0.5">
               {expenses.length} expense{expenses.length !== 1 ? 's' : ''}
-              {expenses.length > 0 && <> · <span className="text-white font-mono">{formatCurrency(total)}</span> total</>}
+              {expenses.length > 0 && (
+                <> · <span className="text-white font-mono">{formatCurrency(total)}</span> total</>
+              )}
             </p>
           )}
         </div>
-        <FilterBar filters={filters} onChange={setFilters} />
+
+        {/* Search + Filters */}
+        <div className="flex flex-wrap items-center gap-3">
+          <SearchBar value={search} onChange={setSearch} />
+          <FilterBar filters={filters} onChange={setFilters} />
+        </div>
       </div>
 
+      {/* List */}
       {loading ? (
         <div className="space-y-3">
           {[...Array(5)].map((_, i) => <div key={i} className="card h-20 animate-pulse" />)}
@@ -89,35 +101,41 @@ export default function Logbook({ externalModal, onExternalModalClose }) {
         </div>
       ) : expenses.length === 0 ? (
         <div className="card text-center py-16">
-          <div className="text-4xl mb-3">🔍</div>
-          <p className="font-display font-semibold text-lg mb-1">No expenses found</p>
+          <div className="text-4xl mb-3">{search ? '🔍' : '📭'}</div>
+          <p className="font-display font-semibold text-lg mb-1">
+            {search ? `No results for "${search}"` : 'No expenses found'}
+          </p>
           <p className="text-muted text-sm">
-            {filters.category !== 'All' || filters.startDate || filters.endDate
-              ? 'Try adjusting or resetting your filters.'
+            {search
+              ? 'Try a different search term.'
+              : filters.category !== 'All' || filters.startDate || filters.endDate
+              ? 'Try adjusting your filters.'
               : 'Add your first expense using the button above.'}
           </p>
         </div>
       ) : (
         <div className="space-y-3">
           {expenses.map(expense => (
-            <ExpenseCard key={expense.id} expense={expense}
-              onEdit={setEditTarget} onDelete={setDeleteTarget} />
+            <ExpenseCard
+              key={expense.id}
+              expense={expense}
+              onEdit={setEditTarget}
+              onDelete={setDeleteTarget}
+            />
           ))}
         </div>
       )}
 
-      {/* Add modal — triggered from Navbar */}
+      {/* Modals */}
       <Modal isOpen={externalModal} onClose={onExternalModalClose} title="Add Expense">
         <ExpenseForm onSubmit={handleAdd} onCancel={onExternalModalClose} loading={formLoading} />
       </Modal>
 
-      {/* Edit modal */}
       <Modal isOpen={!!editTarget} onClose={() => setEditTarget(null)} title="Edit Expense">
         <ExpenseForm initial={editTarget} onSubmit={handleEdit}
           onCancel={() => setEditTarget(null)} loading={formLoading} />
       </Modal>
 
-      {/* Delete modal */}
       <Modal isOpen={!!deleteTarget} onClose={() => setDeleteTarget(null)} title="Confirm Delete">
         <DeleteConfirm expense={deleteTarget} onConfirm={handleDelete}
           onCancel={() => setDeleteTarget(null)} loading={deleteLoading} />
