@@ -159,12 +159,39 @@ mysql -u root -p spendwise < data/spendwise_export.sql
 
 ## Workload Allocation
 
-This project was completed individually.
+This project was completed individually by Abhishek.
 
-| File(s) | Author |
+| File | Author |
 |---|---|
-| All backend files | Abhishek |
-| All frontend files | Abhishek |
+| `backend/main.py` | Abhishek |
+| `backend/database.py` | Abhishek |
+| `backend/models.py` | Abhishek |
+| `backend/schemas.py` | Abhishek |
+| `backend/auth.py` | Abhishek |
+| `backend/auth_routes.py` | Abhishek |
+| `backend/routes.py` | Abhishek |
+| `backend/admin_routes.py` | Abhishek |
+| `backend/seed.py` | Abhishek |
+| `frontend/src/App.jsx` | Abhishek |
+| `frontend/src/main.jsx` | Abhishek |
+| `frontend/src/context/AuthContext.jsx` | Abhishek |
+| `frontend/src/components/Navbar.jsx` | Abhishek |
+| `frontend/src/components/Modal.jsx` | Abhishek |
+| `frontend/src/components/ExpenseForm.jsx` | Abhishek |
+| `frontend/src/components/ExpenseCard.jsx` | Abhishek |
+| `frontend/src/components/FilterBar.jsx` | Abhishek |
+| `frontend/src/components/SearchBar.jsx` | Abhishek |
+| `frontend/src/components/DeleteConfirm.jsx` | Abhishek |
+| `frontend/src/components/Charts.jsx` | Abhishek |
+| `frontend/src/components/StatCard.jsx` | Abhishek |
+| `frontend/src/pages/LoginPage.jsx` | Abhishek |
+| `frontend/src/pages/Dashboard.jsx` | Abhishek |
+| `frontend/src/pages/Logbook.jsx` | Abhishek |
+| `frontend/src/pages/AdminPanel.jsx` | Abhishek |
+| `frontend/src/hooks/useExpenses.js` | Abhishek |
+| `frontend/src/hooks/useStats.js` | Abhishek |
+| `frontend/src/services/api.js` | Abhishek |
+| `frontend/src/utils/constants.js` | Abhishek |
 
 ---
 

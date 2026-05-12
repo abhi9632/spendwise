@@ -3,7 +3,6 @@ from sqlmodel import Session, select
 from database import get_session
 from models import User, UserActivity, Expense
 from auth import get_admin_user
-from schemas import UserOut, ActivityOut
 
 router = APIRouter(prefix="/api/admin", tags=["admin"])
 

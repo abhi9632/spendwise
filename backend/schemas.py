@@ -2,7 +2,6 @@ from pydantic import BaseModel, field_validator
 from typing import Optional
 from datetime import datetime
 from datetime import date as DateType, date
-from typing import Optional
 
 
 class UserRegister(BaseModel):

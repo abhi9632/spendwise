@@ -13,20 +13,29 @@ export default function LoginPage() {
     setForm(prev => ({ ...prev, [e.target.name]: e.target.value }))
 
   const handleSubmit = async (e) => {
-    e.preventDefault()
-    setError(null)
-    setLoading(true)
-    try {
-      const res = isRegister
-        ? await register(form)
-        : await login({ username: form.username, password: form.password })
-      loginUser(res.access_token, res.user)
-    } catch (err) {
-      setError(err.response?.data?.detail || 'Something went wrong')
-    } finally {
-      setLoading(false)
-    }
+  e.preventDefault()
+  setError(null)
+
+  // Basic frontend validation
+  if (isRegister) {
+    if (form.username.length < 3) return setError('Username must be at least 3 characters')
+    if (form.password.length < 6) return setError('Password must be at least 6 characters')
+    if (!form.email.includes('@')) return setError('Enter a valid email address')
   }
+  if (!form.username || !form.password) return setError('All fields are required')
+
+  setLoading(true)
+  try {
+    const res = isRegister
+      ? await register(form)
+      : await login({ username: form.username, password: form.password })
+    loginUser(res.access_token, res.user)
+  } catch (err) {
+    setError(err.response?.data?.detail || 'Something went wrong')
+  } finally {
+    setLoading(false)
+  }
+}
 
   return (
     <div className="min-h-screen bg-ink flex items-center justify-center px-4">
