@@ -29,8 +29,11 @@ CREATE TABLE `expense` (
   `category` varchar(255) NOT NULL,
   `date` date NOT NULL,
   `description` varchar(500) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  `user_id` int DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `user_id` (`user_id`),
+  CONSTRAINT `expense_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -39,8 +42,67 @@ CREATE TABLE `expense` (
 
 LOCK TABLES `expense` WRITE;
 /*!40000 ALTER TABLE `expense` DISABLE KEYS */;
-INSERT INTO `expense` VALUES (1,'Woolworths BIG shop',87.5,'Food','2025-09-05','Weekly grocery run'),(2,'Opal card top-up',50,'Transport','2025-09-08','Monthly commute'),(3,'Netflix',22.99,'Entertainment','2025-09-01','Monthly subscription'),(5,'Chemist Warehouse',34.2,'Health','2025-09-10','Vitamins'),(6,'UTS library printing',12,'Education','2025-09-12','Assignment printouts'),(7,'Thai restaurant',45,'Food','2025-09-14','Dinner with friends'),(8,'Uber to airport',38,'Transport','2025-09-15','Sydney Airport'),(9,'ASOS order',119.9,'Shopping','2025-09-18','Winter clothes'),(10,'Spotify Premium',12.99,'Entertainment','2025-10-01','Monthly subscription'),(11,'Electricity bill',180,'Housing','2025-10-05','Quarterly bill'),(12,'Coles groceries',95.3,'Food','2025-10-08','Weekly shop'),(13,'GP visit',30,'Health','2025-10-11','Bulk billing gap'),(14,'Udemy course',24.99,'Education','2025-10-15','React advanced'),(15,'Rent',1400,'Housing','2025-11-01','Monthly rent'),(18,'Test coffee',5.5,'Food','2025-11-10','Test'),(19,'Food at Antera',12,'Food','2026-04-05','I ate biryani at Antera. it was 12 dollars'),(20,'Grocery',12,'Shopping','2026-04-05','Coles'),(21,'Rent',500,'Housing','2026-04-05','');
+INSERT INTO `expense` VALUES (1,'Woolworths BIG shop',87.5,'Food','2025-09-05','Weekly grocery run',NULL),(2,'Opal card top-up',50,'Transport','2025-09-08','Monthly commute',NULL),(3,'Netflix',22.99,'Entertainment','2025-09-01','Monthly subscription',NULL),(5,'Chemist Warehouse',34.2,'Health','2025-09-10','Vitamins',NULL),(6,'UTS library printing',12,'Education','2025-09-12','Assignment printouts',NULL),(7,'Thai restaurant',45,'Food','2025-09-14','Dinner with friends',NULL),(8,'Uber to airport',38,'Transport','2025-09-15','Sydney Airport',NULL),(9,'ASOS order',119.9,'Shopping','2025-09-18','Winter clothes',NULL),(10,'Spotify Premium',12.99,'Entertainment','2025-10-01','Monthly subscription',NULL),(11,'Electricity bill',180,'Housing','2025-10-05','Quarterly bill',NULL),(12,'Coles groceries',95.3,'Food','2025-10-08','Weekly shop',NULL),(13,'GP visit',30,'Health','2025-10-11','Bulk billing gap',NULL),(14,'Udemy course',24.99,'Education','2025-10-15','React advanced',NULL),(15,'Rent',100,'Housing','2025-11-01','Monthly rent',NULL),(18,'Test coffee',5.5,'Food','2025-11-10','Test',NULL),(20,'Grocery',12,'Shopping','2026-04-05','Coles',NULL),(23,'Morning Coffee',6.5,'Food','2026-05-04','Flat white from the cafe downstairs',1),(24,'Uber to CBD',19,'Transport','2026-05-31','Ride to work meeting',1),(25,'Netflix',22.99,'Entertainment','2026-05-01','Monthly subscription',1),(26,'Coffee Beans',14,'Food','2026-05-10','Bag of beans from market',1);
 /*!40000 ALTER TABLE `expense` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `user`
+--
+
+DROP TABLE IF EXISTS `user`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `user` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `username` varchar(50) NOT NULL,
+  `email` varchar(100) NOT NULL,
+  `hashed_password` varchar(255) NOT NULL,
+  `is_admin` tinyint(1) NOT NULL,
+  `created_at` datetime NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `ix_user_username` (`username`),
+  UNIQUE KEY `ix_user_email` (`email`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `user`
+--
+
+LOCK TABLES `user` WRITE;
+/*!40000 ALTER TABLE `user` DISABLE KEYS */;
+INSERT INTO `user` VALUES (1,'admin','admin@spendwise.com','$2b$12$YE2pJVrULXqVaDX6LWKSg.pQnqURDEaNffvtKuiKFwDMCg8WbdzH2',1,'2026-05-12 17:59:21'),(2,'string','string','$2b$12$1sB6UB5ApSCri/Gam1iOhegdtJMWO0EG9nIDMVX7Z34iskZdIs50q',0,'2026-05-12 18:08:31'),(3,'testuser','test@example.com','$2b$12$NcRmfIkt8bmXpj5/3rZQZ.Z6FiqU0mgo.8GnIBJWnIeY9gHUg0L7a',0,'2026-05-12 18:09:20');
+/*!40000 ALTER TABLE `user` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `useractivity`
+--
+
+DROP TABLE IF EXISTS `useractivity`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `useractivity` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `user_id` int NOT NULL,
+  `action` varchar(100) NOT NULL,
+  `detail` varchar(255) DEFAULT NULL,
+  `timestamp` datetime NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `user_id` (`user_id`),
+  CONSTRAINT `useractivity_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `useractivity`
+--
+
+LOCK TABLES `useractivity` WRITE;
+/*!40000 ALTER TABLE `useractivity` DISABLE KEYS */;
+INSERT INTO `useractivity` VALUES (1,2,'register','New user registered: string','2026-05-12 18:08:31'),(2,3,'register','New user registered: testuser','2026-05-12 18:09:20'),(3,1,'login','admin logged in','2026-05-12 18:10:23'),(4,1,'login','admin logged in','2026-05-12 18:17:52'),(5,1,'login','admin logged in','2026-05-12 18:22:10'),(6,1,'login','admin logged in','2026-05-12 18:25:05'),(7,1,'create_expense','Created: Morning Coffee','2026-05-12 18:54:44'),(8,1,'create_expense','Created: Uber to CBD','2026-05-12 18:57:30'),(9,1,'create_expense','Created: Netflix','2026-05-12 18:57:36'),(10,1,'create_expense','Created: Coffee Beans','2026-05-12 18:57:43'),(12,1,'login','admin logged in','2026-05-12 19:07:06'),(13,1,'update_expense','Updated: Morning Coffee','2026-05-12 19:08:28'),(14,1,'update_expense','Updated: Uber to CBD','2026-05-12 19:08:33'),(15,1,'login','admin logged in','2026-05-12 19:15:17'),(16,1,'update_expense','Updated: Uber to CBD','2026-05-12 19:17:26');
+/*!40000 ALTER TABLE `useractivity` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -52,4 +114,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2026-04-06  2:08:01
+-- Dump completed on 2026-05-13  5:21:41
