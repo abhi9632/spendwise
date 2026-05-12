@@ -42,7 +42,7 @@ CREATE TABLE `expense` (
 
 LOCK TABLES `expense` WRITE;
 /*!40000 ALTER TABLE `expense` DISABLE KEYS */;
-INSERT INTO `expense` VALUES (1,'Woolworths BIG shop',87.5,'Food','2025-09-05','Weekly grocery run',NULL),(2,'Opal card top-up',50,'Transport','2025-09-08','Monthly commute',NULL),(3,'Netflix',22.99,'Entertainment','2025-09-01','Monthly subscription',NULL),(5,'Chemist Warehouse',34.2,'Health','2025-09-10','Vitamins',NULL),(6,'UTS library printing',12,'Education','2025-09-12','Assignment printouts',NULL),(7,'Thai restaurant',45,'Food','2025-09-14','Dinner with friends',NULL),(8,'Uber to airport',38,'Transport','2025-09-15','Sydney Airport',NULL),(9,'ASOS order',119.9,'Shopping','2025-09-18','Winter clothes',NULL),(10,'Spotify Premium',12.99,'Entertainment','2025-10-01','Monthly subscription',NULL),(11,'Electricity bill',180,'Housing','2025-10-05','Quarterly bill',NULL),(12,'Coles groceries',95.3,'Food','2025-10-08','Weekly shop',NULL),(13,'GP visit',30,'Health','2025-10-11','Bulk billing gap',NULL),(14,'Udemy course',24.99,'Education','2025-10-15','React advanced',NULL),(15,'Rent',100,'Housing','2025-11-01','Monthly rent',NULL),(18,'Test coffee',5.5,'Food','2025-11-10','Test',NULL),(20,'Grocery',12,'Shopping','2026-04-05','Coles',NULL),(23,'Morning Coffee',6.5,'Food','2026-05-04','Flat white from the cafe downstairs',1),(24,'Uber to CBD',19,'Transport','2026-05-31','Ride to work meeting',1),(25,'Netflix',22.99,'Entertainment','2026-05-01','Monthly subscription',1),(26,'Coffee Beans',14,'Food','2026-05-10','Bag of beans from market',1);
+INSERT INTO `expense` VALUES (1,'Woolworths BIG shop',87.5,'Food','2025-09-05','Weekly grocery run',NULL),(2,'Opal card top-up',50,'Transport','2025-09-08','Monthly commute',NULL),(3,'Netflix',22.99,'Entertainment','2025-09-01','Monthly subscription',NULL),(5,'Chemist Warehouse',34.2,'Health','2025-09-10','Vitamins',NULL),(6,'UTS library printing',12,'Education','2025-09-12','Assignment printouts',NULL),(7,'Thai restaurant',45,'Food','2025-09-14','Dinner with friends',NULL),(8,'Uber to airport',38,'Transport','2025-09-15','Sydney Airport',NULL),(9,'ASOS order',119.9,'Shopping','2025-09-18','Winter clothes',NULL),(10,'Spotify Premium',12.99,'Entertainment','2025-10-01','Monthly subscription',NULL),(11,'Electricity bill',180,'Housing','2025-10-05','Quarterly bill',NULL),(12,'Coles groceries',95.3,'Food','2025-10-08','Weekly shop',NULL),(13,'GP visit',30,'Health','2025-10-11','Bulk billing gap',NULL),(14,'Udemy course',24.99,'Education','2025-10-15','React advanced',NULL),(15,'Rent',100,'Housing','2025-11-01','Monthly rent',NULL),(18,'Test coffee',5.5,'Food','2025-11-10','Test',NULL),(20,'Grocery',12,'Shopping','2026-04-05','Coles',NULL),(23,'Morning Coffee',6.5,'Food','2026-05-04','Flat white from the cafe downstairs',1),(24,'Uber to CBD',19,'Transport','2026-05-12','Ride to work meetingRide to work meetingRide to work meetingRide to work meetingRide to work meetingRide to work meetingRide to work meetingRide to work meetingRide to work meetingRide to work meetingRide to work meetingRide to work meetingRide to work meetingRide to work meetingRide to work meetingRide to work meetingRide to work meetingRide to work meetingRide to work meetingRide to work meetingRide to work meetingRide to work meetingRide to work meetingRide to work meetingRide to work meeting',1),(25,'Netflix',22.99,'Entertainment','2026-05-01','Monthly subscription',1),(26,'Coffee Beans',14,'Food','2026-05-10','Bag of beans from market',1);
 /*!40000 ALTER TABLE `expense` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -92,7 +92,7 @@ CREATE TABLE `useractivity` (
   PRIMARY KEY (`id`),
   KEY `user_id` (`user_id`),
   CONSTRAINT `useractivity_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -101,7 +101,7 @@ CREATE TABLE `useractivity` (
 
 LOCK TABLES `useractivity` WRITE;
 /*!40000 ALTER TABLE `useractivity` DISABLE KEYS */;
-INSERT INTO `useractivity` VALUES (1,2,'register','New user registered: string','2026-05-12 18:08:31'),(2,3,'register','New user registered: testuser','2026-05-12 18:09:20'),(3,1,'login','admin logged in','2026-05-12 18:10:23'),(4,1,'login','admin logged in','2026-05-12 18:17:52'),(5,1,'login','admin logged in','2026-05-12 18:22:10'),(6,1,'login','admin logged in','2026-05-12 18:25:05'),(7,1,'create_expense','Created: Morning Coffee','2026-05-12 18:54:44'),(8,1,'create_expense','Created: Uber to CBD','2026-05-12 18:57:30'),(9,1,'create_expense','Created: Netflix','2026-05-12 18:57:36'),(10,1,'create_expense','Created: Coffee Beans','2026-05-12 18:57:43'),(12,1,'login','admin logged in','2026-05-12 19:07:06'),(13,1,'update_expense','Updated: Morning Coffee','2026-05-12 19:08:28'),(14,1,'update_expense','Updated: Uber to CBD','2026-05-12 19:08:33'),(15,1,'login','admin logged in','2026-05-12 19:15:17'),(16,1,'update_expense','Updated: Uber to CBD','2026-05-12 19:17:26');
+INSERT INTO `useractivity` VALUES (1,2,'register','New user registered: string','2026-05-12 18:08:31'),(2,3,'register','New user registered: testuser','2026-05-12 18:09:20'),(3,1,'login','admin logged in','2026-05-12 18:10:23'),(4,1,'login','admin logged in','2026-05-12 18:17:52'),(5,1,'login','admin logged in','2026-05-12 18:22:10'),(6,1,'login','admin logged in','2026-05-12 18:25:05'),(7,1,'create_expense','Created: Morning Coffee','2026-05-12 18:54:44'),(8,1,'create_expense','Created: Uber to CBD','2026-05-12 18:57:30'),(9,1,'create_expense','Created: Netflix','2026-05-12 18:57:36'),(10,1,'create_expense','Created: Coffee Beans','2026-05-12 18:57:43'),(12,1,'login','admin logged in','2026-05-12 19:07:06'),(13,1,'update_expense','Updated: Morning Coffee','2026-05-12 19:08:28'),(14,1,'update_expense','Updated: Uber to CBD','2026-05-12 19:08:33'),(15,1,'login','admin logged in','2026-05-12 19:15:17'),(16,1,'update_expense','Updated: Uber to CBD','2026-05-12 19:17:26'),(17,1,'update_expense','Updated: Uber to CBD','2026-05-12 19:31:13');
 /*!40000 ALTER TABLE `useractivity` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -114,4 +114,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2026-05-13  5:21:41
+-- Dump completed on 2026-05-13  5:41:58
