@@ -4,6 +4,7 @@ import Navbar from './components/Navbar'
 import Dashboard from './pages/Dashboard'
 import Logbook from './pages/Logbook'
 import LoginPage from './pages/LoginPage'
+import AdminPanel from './pages/AdminPanel'
 
 export default function App() {
   const { user, loading } = useAuth()
@@ -32,12 +33,7 @@ export default function App() {
         {activeView === 'logbook'   && (
           <Logbook externalModal={addModalOpen} onExternalModalClose={() => setAddModalOpen(false)} />
         )}
-        {activeView === 'admin' && user?.is_admin && (
-          <div className="card text-center py-20">
-            <p className="font-display font-bold text-2xl mb-2">Admin Panel</p>
-            <p className="text-muted text-sm">Coming in Commit 7</p>
-          </div>
-        )}
+        {activeView === 'admin' && user?.is_admin && <AdminPanel />}
       </main>
 
       <footer className="border-t border-border mt-16 py-6 text-center">
