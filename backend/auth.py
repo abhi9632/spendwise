@@ -14,8 +14,7 @@ ALGORITHM  = os.getenv("ALGORITHM", "HS256")
 ACCESS_TOKEN_EXPIRE_MINUTES = 60 * 24  # 24 hours
 
 pwd_context   = CryptContext(schemes=["bcrypt"], deprecated="auto")
-oauth2_scheme = OAuth2PasswordBearer(tokenUrl="/api/auth/login")
-
+oauth2_scheme = OAuth2PasswordBearer(tokenUrl="/api/auth/token")
 
 # ── Password helpers ──────────────────────────────────────────
 def hash_password(password: str) -> str:
