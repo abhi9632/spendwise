@@ -33,7 +33,7 @@ CREATE TABLE `expense` (
   PRIMARY KEY (`id`),
   KEY `user_id` (`user_id`),
   CONSTRAINT `expense_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=42 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -42,7 +42,7 @@ CREATE TABLE `expense` (
 
 LOCK TABLES `expense` WRITE;
 /*!40000 ALTER TABLE `expense` DISABLE KEYS */;
-INSERT INTO `expense` VALUES (1,'Woolworths BIG shop',87.5,'Food','2025-09-05','Weekly grocery run',NULL),(2,'Opal card top-up',50,'Transport','2025-09-08','Monthly commute',NULL),(3,'Netflix',22.99,'Entertainment','2025-09-01','Monthly subscription',NULL),(5,'Chemist Warehouse',34.2,'Health','2025-09-10','Vitamins',NULL),(6,'UTS library printing',12,'Education','2025-09-12','Assignment printouts',NULL),(7,'Thai restaurant',45,'Food','2025-09-14','Dinner with friends',NULL),(8,'Uber to airport',38,'Transport','2025-09-15','Sydney Airport',NULL),(9,'ASOS order',119.9,'Shopping','2025-09-18','Winter clothes',NULL),(10,'Spotify Premium',12.99,'Entertainment','2025-10-01','Monthly subscription',NULL),(11,'Electricity bill',180,'Housing','2025-10-05','Quarterly bill',NULL),(12,'Coles groceries',95.3,'Food','2025-10-08','Weekly shop',NULL),(13,'GP visit',30,'Health','2025-10-11','Bulk billing gap',NULL),(14,'Udemy course',24.99,'Education','2025-10-15','React advanced',NULL),(15,'Rent',100,'Housing','2025-11-01','Monthly rent',NULL),(18,'Test coffee',5.5,'Food','2025-11-10','Test',NULL),(20,'Grocery',12,'Shopping','2026-04-05','Coles',NULL),(23,'Morning Coffee',6.5,'Food','2026-05-04','Flat white from the cafe downstairs',1),(24,'Uber to CBD',19,'Transport','2026-05-12','Ride to work meetingRide to work meetingRide to work meetingRide to work meetingRide to work meetingRide to work meetingRide to work meetingRide to work meetingRide to work meetingRide to work meetingRide to work meetingRide to work meetingRide to work meetingRide to work meetingRide to work meetingRide to work meetingRide to work meetingRide to work meetingRide to work meetingRide to work meetingRide to work meetingRide to work meetingRide to work meetingRide to work meetingRide to work meeting',1),(25,'Netflix',22.99,'Entertainment','2026-05-01','Monthly subscription',1),(26,'Coffee Beans',14,'Food','2026-05-10','Bag of beans from market',1);
+INSERT INTO `expense` VALUES (23,'Morning Coffee',6.5,'Food','2026-05-04','Flat white from the cafe downstairs',1),(24,'Uber to CBD',19,'Transport','2026-05-12','Ride to work meetingRide to work meetingRide to work meetingRide to work meetingRide to work meetingRide to work meetingRide to work meetingRide to work meetingRide to work meetingRide to work meetingRide to work meetingRide to work meetingRide to work meetingRide to work meetingRide to work meetingRide to work meetingRide to work meetingRide to work meetingRide to work meetingRide to work meetingRide to work meetingRide to work meetingRide to work meetingRide to work meetingRide to work meeting',1),(25,'Netflix',22.99,'Entertainment','2026-05-01','Monthly subscription',1),(26,'Coffee Beans',14,'Food','2026-05-10','Bag of beans from market',1),(27,'Woolworths groceries',87.5,'Food','2025-09-05','Weekly grocery run',1),(28,'Opal card top-up',50,'Transport','2025-09-08','Monthly commute',1),(29,'Netflix',22.99,'Entertainment','2025-09-01','Monthly subscription',1),(30,'Rent',1400,'Housing','2025-09-01','Monthly rent',1),(31,'Chemist Warehouse',34.2,'Health','2025-09-10','Vitamins',1),(32,'UTS library printing',12,'Education','2025-09-12','Assignment printouts',1),(33,'Thai restaurant',45,'Food','2025-09-14','Dinner with friends',1),(34,'Uber to airport',38,'Transport','2025-09-15','Sydney Airport',1),(35,'ASOS order',119.9,'Shopping','2025-09-18','Winter clothes',1),(36,'Spotify Premium',12.99,'Entertainment','2025-10-01','Monthly subscription',1),(37,'Electricity bill',180,'Housing','2025-10-05','Quarterly bill',1),(38,'Coles groceries',95.3,'Food','2025-10-08','Weekly shop',1),(39,'GP visit',30,'Health','2025-10-11','Bulk billing gap',1),(40,'Udemy course',24.99,'Education','2025-10-15','React advanced',1),(41,'Rent',1400,'Housing','2025-11-01','Monthly rent',1);
 /*!40000 ALTER TABLE `expense` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -114,4 +114,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2026-05-13  5:41:58
+-- Dump completed on 2026-05-13  5:44:05
